@@ -15,7 +15,7 @@ DINNER_REPEAT    = 2
 CALORIE_MAX   = 1870
 
 SEPARATOR = ', '
-DATABASE_FILE = 'testdatabase.db'
+DATABASE_FILE_NAME = 'testdatabase.db'
 
 CREATE_TABLE_SQL = """CREATE TABLE IF NOT EXISTS meals (
                         id integer PRIMARY KEY AUTOINCREMENT,

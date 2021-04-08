@@ -1,0 +1,18 @@
+TODO FUNCTIONALITY:
+    - main should be an interactive program -- start tool, then allow user to input options such as:
+        - generate meals (+ get shopping list at same time)
+        - get shopping list for last generated meal (in case user didn't specify at same time)
+    - shopping list
+        - generate shopping list of ingredients from last generated meal set
+        - auto output shopping list to text file (can specify directory for this file or have default)
+        - allow user to choose to output shopping list to console only (no file generated)
+    - future -- gui (possibly get to this?)
+    - future -- quantity of ingredients (i.e. this recipe needs 3 eggs vs. one loaf of bread works for
+                multiple recipes)
+    - future: eat out options
+    - future: avoid meals with duplicate protein
+        - (search for protein type in ingredients? before entering into the database so can be sorted by that?)
+    - future: base repeat of meal on recipe itself rather than just type
+    - future: update ID in database to fill in gaps for removed recipies
+    - future: multiple meal_type meals (i.e. dinner and lunch, etc.)
+    - future: generates leftovers? includes adding leftover option to meal picking
