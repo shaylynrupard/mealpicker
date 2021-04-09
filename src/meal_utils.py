@@ -6,7 +6,7 @@ import sqlite3
 
 from meal_constants import *
 
-def connect_to_db():
+def _connect_to_db():
     """
         Function to connect to SQLite database
     """
@@ -45,7 +45,7 @@ def add_meals_to_db():
         print('    - %s'% ingredient)
 
     try:
-        conn = connect_to_db()
+        conn = _connect_to_db()
         cur = conn.cursor()
 
         # check if this database has 'meal' table yet; if not, create meal table
@@ -75,7 +75,7 @@ def delete_meals_in_db():
 
     delete_id = input("ID of meal to delete from database: ")
     try:
-        conn = connect_to_db()
+        conn = _connect_to_db()
         cur = conn.cursor()
 
         # check that meal with given ID exists; if so, delete from database
@@ -101,7 +101,7 @@ def view_meals_in_db():
     print('Current meals in database: ')
     print('ID   NAME    MEAL_TYPE   INGREDIENTS')
     try:
-        conn = connect_to_db()
+        conn = _connect_to_db()
         cur = conn.cursor()
 
         # retrieve all rows from meal table
@@ -135,15 +135,15 @@ def pick_meals_for_week():
 
     picked_meals = []
     try:
-        conn = connect_to_db()
+        conn = _connect_to_db()
         cur = conn.cursor()
 
         # get breakfast meals
         cur.execute("SELECT * FROM meals WHERE meal_type='breakfast'")
         rows = cur.fetchall()
-        if len(rows) < NUM_BREAKFAST:
+        if len(rows) < math.ceil(NUM_BREAKFAST/BREAKFAST_REPEAT):
             print("ERROR: Not enough breakfast options (need %s; have %s).  Please add more to the database."
-                  % (NUM_BREAKFAST, len(rows)))
+                  % (math.ceil(NUM_BREAKFAST/BREAKFAST_REPEAT), len(rows)))
             conn.close()
             return
         picked_meals = _choose_meals(rows, picked_meals, NUM_BREAKFAST, BREAKFAST_REPEAT)

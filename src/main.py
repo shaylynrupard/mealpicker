@@ -12,7 +12,6 @@
 """
 
 
-from meal_constants import *
 import meal_utils as utils
 
 if __name__ == '__main__':
