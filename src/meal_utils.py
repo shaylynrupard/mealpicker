@@ -1,3 +1,4 @@
+from datetime import datetime
 import math
 import os
 import random
@@ -97,6 +98,10 @@ def view_meals_in_db():
 
 def pick_meals_for_week():
     print('Generating meals for the week...')
+    meal_list_file = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
+                                                      'lists', MEAL_LIST_FILE_NAME))
+    meal_list_file = meal_list_file + datetime.today().strftime('%Y%m%d') + FILE_EXT
+
     picked_meals = []
 
     try:
@@ -140,6 +145,15 @@ def pick_meals_for_week():
     except Exception as e:
         print('ERROR: %s' % e)
 
+    if os.path.exists(meal_list_file):
+        os.remove(meal_list_file)
+
+    with open(meal_list_file, "w") as file:
+        for meal in picked_meals:
+            file.write("%s\n" % meal[1])
+
+    print("Meal list generated.  File location %s" % meal_list_file)
+
     return picked_meals
 
 def _choose_meals(rows, picked_meals, num_meals, num_repeat):
@@ -161,4 +175,27 @@ def _choose_meals(rows, picked_meals, num_meals, num_repeat):
     return picked_meals
 
 def generate_shopping_list(last_picked_meals):
-    pass
+    print("Generating shopping list...")
+    shopping_list_file = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
+                                         'lists', SHOPPING_LIST_FILE_NAME))
+    shopping_list_file = shopping_list_file + datetime.today().strftime('%Y%m%d') + FILE_EXT
+
+    shopping_list = {}
+
+    for meal in last_picked_meals:
+        ingredients = meal[3].split(SEPARATOR)
+
+        for ingredient in ingredients:
+            if ingredient in shopping_list:
+                shopping_list[ingredient] = shopping_list[ingredient] + 1
+            else:
+                shopping_list[ingredient] = 1
+
+    if os.path.exists(shopping_list_file):
+        os.remove(shopping_list_file)
+
+    with open(shopping_list_file, "w") as file:
+        for ingredient in shopping_list.keys():
+            file.write("%s  %s\n" % (shopping_list[ingredient], ingredient))
+
+    print("Shopping list generated.  File location %s" % shopping_list_file)
