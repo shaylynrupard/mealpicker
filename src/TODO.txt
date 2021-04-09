@@ -9,6 +9,8 @@ TODO FUNCTIONALITY:
             - includes adding potential either option to meal picking
         - meal generates leftovers?
             - includes adding leftover option to meal picking
+        - add caloric information
+            - includes adding caloric calculating to meal picking
     - PICK:
         - eat out options
         - avoid meals with duplicate protein

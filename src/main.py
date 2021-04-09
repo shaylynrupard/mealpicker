@@ -1,13 +1,15 @@
+"""
+    Main running function for MealPicker Tool
 
-# old main:
-# - add meals to meal list
-# 	- set name, time type (breakfast, lunch, etc), cusisine type, frequency preference
-# - randomly select meals based on:
-# 	- open time slots
-# 	- frequency
-#  	- available order-out options
-# 	- leftovers
-# - display choices
+    MealPicker Tool Options:
+        - add meal to database
+        - view all meals in database
+        - delete meal from database
+        - pick meals for the week
+        - generate shopping list from picked meals
+        - quit MealPicker
+
+"""
 
 
 from meal_constants import *
